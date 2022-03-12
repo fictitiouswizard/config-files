@@ -24,6 +24,7 @@ Plugin 'davidhalter/jedi-vim'
 Plugin 'deoplete-plugins/deoplete-jedi'
 Plugin 'fatih/vim-go'
 Plugin 'petobens/poet-v'
+Plugin 'ervandew/supertab'
 
 call vundle#end()
 
@@ -48,7 +49,7 @@ autocmd BufWinEnter *.* silent loadview
 autocmd VimEnter * NERDTree | wincmd p
 autocmd BufNewFile,BufRead *.rs set filetype=rust
 
-set completeopt=menu,menuone,preview,noselect,noinsert
+set completeopt=menu,menuone,preview
 let g:ale_completion_enabled = 1
 
 au BufNewFile,BufRead *.py
