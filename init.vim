@@ -6,6 +6,8 @@ set rtp+=~/.config/nvim/bundle/Vundle.vim
 let g:python_host_prog = '/usr/bin/python'
 let g:python3_host_prog = '/Library/Frameworks/Python.framework/Versions/3.10/bin/python3'
 
+let mapleader = ","
+
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
@@ -18,13 +20,18 @@ Plugin 'Konfekt/FastFold'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mattn/emmet-vim'
-Plugin 'sainnhe/gruvbox-material'
 Plugin 'Shougo/deoplete.nvim'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'deoplete-plugins/deoplete-jedi'
 Plugin 'fatih/vim-go'
 Plugin 'petobens/poet-v'
 Plugin 'ervandew/supertab'
+Plugin 'dart-lang/dart-vim-plugin'
+Plugin 'thosakwe/vim-flutter'
+Plugin 'sainnhe/everforest'
+Plugin 'pineapplegiant/spaceduck'
+Plugin 'karoliskoncevicius/sacredforest-vim'
+Plugin 'hardselius/warlock'
 
 call vundle#end()
 
@@ -35,21 +42,22 @@ let g:jedi#completions_enabled = 0
 let g:poetv_auto_activate = 1
 let g:deoplete#enable_at_startup = 1
 let g:kite_supported_languages = ['*']
-let g:kite_tab_complete=1
+let g:jedi#popup_select_first = 0
+let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabClosePreviewOnPopupClose = 1
 
-set completeopt+=menuone
-set completeopt+=noinsert
+nnoremap <leader>d :ALEGoToDefinition<CR>
 
 filetype plugin indent on
 syntax on
 
-autocmd BufWinLeave *.* mkview
+autocmd BufWinLeave *.* silent mkview
 autocmd BufWinEnter *.* silent loadview
 
 autocmd VimEnter * NERDTree | wincmd p
 autocmd BufNewFile,BufRead *.rs set filetype=rust
 
-set completeopt=menu,menuone,preview
+set completeopt=menu,menuone
 let g:ale_completion_enabled = 1
 
 au BufNewFile,BufRead *.py
@@ -61,7 +69,12 @@ au BufNewFile,BufRead *.py
     \ set autoindent |
     \ set fileformat=unix
 
-au BufNewFile,BufRead *.js, *.html, *.css
+au BufNewFile,BufRead *.js, *.css
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2
+
+au BufNewFile,BufRead *.html
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2
@@ -76,7 +89,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-colorscheme gruvbox-material
+colorscheme warlock 
+set background=dark
 set scrolloff=10
 set incsearch
 set number
@@ -85,4 +99,4 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
-
+nmap <leader>t :NERDTreeToggle<CR>
